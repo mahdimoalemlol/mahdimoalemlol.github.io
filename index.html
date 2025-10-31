@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>برنامه‌ریز تناسب اندام</title>
+    <meta name="description" content="اپلیکیشن برنامه‌ریزی تمرینات ورزشی باشگاه بدن‌سازی">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#2196F3">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="برنامه‌ریز تناسب اندام">
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/components.css">
+    
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-spinner"></div>
+        <p>در حال بارگذاری...</p>
+    </div>
+
+    <!-- Main App Container -->
+    <div id="app" class="app hidden">
+        <!-- Header -->
+        <header class="app-header">
+            <h1>برنامه‌ریز تناسب اندام</h1>
+            <div class="header-actions">
+                <button id="download-pdf" class="btn btn-primary">
+                    <svg class="icon"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg>
+                    دانلود PDF
+                </button>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="app-nav">
+            <button class="nav-btn active" data-section="profile">
+                <svg class="icon"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                پروفایل
+            </button>
+            <button class="nav-btn" data-section="plan">
+                <svg class="icon"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                برنامه
+            </button>
+            <button class="nav-btn" data-section="exercises">
+                <svg class="icon"><path d="M6 9h6v6H6z"/><path d="M15 9h4v6h-4z"/></svg>
+                تمرینات
+            </button>
+            <button class="nav-btn" data-section="progress">
+                <svg class="icon"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                پیشرفت
+            </button>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="app-main">
+            <!-- Profile Section -->
+            <section id="profile-section" class="section active">
+                <div class="section-header">
+                    <h2>اطلاعات شخصی</h2>
+                    <p>لطفاً اطلاعات خود را برای ایجاد برنامه مناسب وارد کنید</p>
+                </div>
+
+                <form id="profile-form" class="profile-form">
+                    <!-- Basic Information -->
+                    <div class="form-group">
+                        <h3>اطلاعات اولیه</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="name">نام و نام خانوادگی</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="age">سن</label>
+                                <input type="number" id="age" name="age" min="16" max="80" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="height">قد (سانتی‌متر)</label>
+                                <input type="number" id="height" name="height" min="100" max="250" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="weight">وزن (کیلوگرم)</label>
+                                <input type="number" id="weight" name="weight" min="30" max="300" required>
+                            </div>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="gender">جنسیت</label>
+                            <select id="gender" name="gender" required>
+                                <option value="">انتخاب کنید</option>
+                                <option value="male">مرد</option>
+                                <option value="female">زن</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Fitness Goals -->
+                    <div class="form-group">
+                        <h3>اهداف تناسب اندام</h3>
+                        
+                        <div class="form-field">
+                            <label for="goal">هدف اصلی</label>
+                            <select id="goal" name="goal" required>
+                                <option value="">انتخاب کنید</option>
+                                <option value="fat-loss">چربی‌سوزی</option>
+                                <option value="muscle-gain">عضله‌سازی</option>
+                                <option value="both">چربی‌سوزی و عضله‌سازی</option>
+                                <option value="strength">افزایش قدرت</option>
+                                <option value="endurance">استقامت</option>
+                                <option value="general">تناسب اندام عمومی</option>
+                            </select>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="experience">سطح تجربه</label>
+                            <select id="experience" name="experience" required>
+                                <option value="">انتخاب کنید</option>
+                                <option value="beginner">مبتدی (0-6 ماه)</option>
+                                <option value="intermediate">متوسط (6 ماه - 2 سال)</option>
+                                <option value="advanced">پیشرفته (بیش از 2 سال)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="days-per-week">روزهای تمرین در هفته</label>
+                                <select id="days-per-week" name="days-per-week" required>
+                                    <option value="3">3 روز</option>
+                                    <option value="4">4 روز</option>
+                                    <option value="5">5 روز</option>
+                                    <option value="6">6 روز</option>
+                                </select>
+                            </div>
+                            <div class="form-field">
+                                <label for="duration">مدت هر جلسه (دقیقه)</label>
+                                <select id="duration" name="duration" required>
+                                    <option value="45">45 دقیقه</option>
+                                    <option value="60">60 دقیقه</option>
+                                    <option value="90">90 دقیقه</option>
+                                    <option value="120">120 دقیقه</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Health Conditions -->
+                    <div class="form-group">
+                        <h3>شرایط پزشکی (اختیاری)</h3>
+                        <p class="form-note">این اطلاعات برای بهینه‌سازی برنامه استفاده می‌شوند</p>
+                        
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="health-conditions" value="back-pain">
+                                <span class="checkmark"></span>
+                                کمر درد
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="health-conditions" value="knee-problems">
+                                <span class="checkmark"></span>
+                                مشکلات زانو
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="health-conditions" value="shoulder-injury">
+                                <span class="checkmark"></span>
+                                آسیب شانه
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="health-conditions" value="heart-condition">
+                                <span class="checkmark"></span>
+                                مشکلات قلبی
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="health-conditions" value="diabetes">
+                                <span class="checkmark"></span>
+                                دیابت
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="health-conditions" value="hypertension">
+                                <span class="checkmark"></span>
+                                فشار خون بالا
+                            </label>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="additional-notes">توضیحات اضافی</label>
+                            <textarea id="additional-notes" name="additional-notes" rows="3" placeholder="هر نکته یا محدودیت اضافی..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Activity Level -->
+                    <div class="form-group">
+                        <h3>سطح فعالیت روزانه</h3>
+                        
+                        <div class="form-field">
+                            <label for="activity-level">فعالیت روزانه</label>
+                            <select id="activity-level" name="activity-level" required>
+                                <option value="">انتخاب کنید</option>
+                                <option value="sedentary">کم‌تحرک (کار اداری، کم پیاده‌روی)</option>
+                                <option value="lightly-active">کمی فعال (پیاده‌روی منظم)</option>
+                                <option value="moderately-active">متوسط (فعالیت بدنی منظم)</option>
+                                <option value="very-active">بسیار فعال (فعالیت بدنی شدید روزانه)</option>
+                                <option value="extremely-active">فوق‌العاده فعات (ورزشکار حرفه‌ای)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-full">
+                        ایجاد برنامه شخصی
+                    </button>
+                </form>
+            </section>
+
+            <!-- Plan Section -->
+            <section id="plan-section" class="section">
+                <div class="section-header">
+                    <h2>برنامه تمرینی</h2>
+                    <p id="plan-description">برنامه شما بر اساس اطلاعات ارائه شده</p>
+                </div>
+
+                <div id="plan-container" class="plan-container">
+                    <!-- Plan content will be generated here -->
+                </div>
+            </section>
+
+            <!-- Exercises Section -->
+            <section id="exercises-section" class="section">
+                <div class="section-header">
+                    <h2>کتابخانه تمرینات</h2>
+                    <p>تمام تمرینات با راهنمای تصویری و ویدئویی</p>
+                </div>
+
+                <div class="exercise-filters">
+                    <div class="filter-group">
+                        <label for="body-part-filter">گروه عضلانی:</label>
+                        <select id="body-part-filter">
+                            <option value="all">همه</option>
+                            <option value="chest">سینه</option>
+                            <option value="back">پشت</option>
+                            <option value="shoulders">شانه</option>
+                            <option value="arms">بازو</option>
+                            <option value="legs">پا</option>
+                            <option value="core">شکم</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="exercises-grid" class="exercises-grid">
+                    <!-- Exercises will be populated here -->
+                </div>
+            </section>
+
+            <!-- Progress Section -->
+            <section id="progress-section" class="section">
+                <div class="section-header">
+                    <h2>پیگیری پیشرفت</h2>
+                    <p>پیگیری وزن، اندازه‌ها و عملکرد خود</p>
+                </div>
+
+                <div class="progress-content">
+                    <div class="progress-form">
+                        <h3>ثبت اطلاعات جدید</h3>
+                        <form id="progress-form">
+                            <div class="form-row">
+                                <div class="form-field">
+                                    <label for="progress-weight">وزن (کیلوگرم)</label>
+                                    <input type="number" id="progress-weight" step="0.1" min="20" max="300">
+                                </div>
+                                <div class="form-field">
+                                    <label for="progress-date">تاریخ</label>
+                                    <input type="date" id="progress-date">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-secondary">ثبت اطلاعات</button>
+                        </form>
+                    </div>
+
+                    <div class="progress-charts">
+                        <h3>نمودار پیشرفت</h3>
+                        <canvas id="progress-chart" width="400" height="200"></canvas>
+                    </div>
+
+                    <div class="progress-table">
+                        <h3>تاریخچه</h3>
+                        <div class="table-container">
+                            <table id="progress-table">
+                                <thead>
+                                    <tr>
+                                        <th>تاریخ</th>
+                                        <th>وزن</th>
+                                        <th>تغییر</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Progress data will be populated here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/workout-planner.js"></script>
+    <script src="scripts/exercises-database.js"></script>
+    <script src="scripts/pdf-generator.js"></script>
+    <script src="scripts/charts.js"></script>
+</body>
+</html>

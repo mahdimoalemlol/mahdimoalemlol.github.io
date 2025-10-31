@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تولید آیکون‌های PWA</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            text-align: center;
+            padding: 20px;
+        }
+        .icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+        }
+        canvas {
+            border: 1px solid #ccc;
+            margin: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            background: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #1976D2;
+        }
+    </style>
+</head>
+<body>
+    <h1>تولید آیکون‌های PWA</h1>
+    <p>این صفحه برای تولید آیکون‌های مورد نیاز PWA استفاده می‌شود.</p>
+    
+    <div class="icon">💪</div>
+    
+    <div id="icons-container">
+        <!-- Icons will be generated here -->
+    </div>
+    
+    <button onclick="generateIcons()">تولید آیکون‌ها</button>
+    <button onclick="downloadAllIcons()">دانلود همه آیکون‌ها</button>
+
+    <script>
+        const iconSizes = [72, 96, 128, 144, 152, 192, 384, 512];
+        
+        function generateIcon(size) {
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+            
+            // Background gradient
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#2196F3');
+            gradient.addColorStop(1, '#1976D2');
+            
+            // Background
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, size, size);
+            
+            // Rounded corners
+            const radius = size * 0.12;
+            ctx.globalCompositeOperation = 'destination-in';
+            ctx.beginPath();
+            ctx.roundRect(0, 0, size, size, radius);
+            ctx.fill();
+            ctx.globalCompositeOperation = 'source-over';
+            
+            // Add shadow
+            ctx.shadowColor = 'rgba(0,0,0,0.2)';
+            ctx.shadowBlur = size * 0.1;
+            ctx.shadowOffsetX = 0;
+            ctx.shadowOffsetY = size * 0.05;
+            
+            // Text - Fitness related emoji or text
+            ctx.fillStyle = 'white';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            
+            if (size >= 128) {
+                ctx.font = `bold ${size * 0.4}px Arial`;
+                ctx.fillText('💪', size / 2, size / 2);
+            } else {
+                ctx.font = `bold ${size * 0.3}px Arial`;
+                ctx.fillText('💪', size / 2, size / 2);
+            }
+            
+            return canvas;
+        }
+        
+        function generateIcons() {
+            const container = document.getElementById('icons-container');
+            container.innerHTML = '';
+            
+            iconSizes.forEach(size => {
+                const canvas = generateIcon(size);
+                canvas.style.width = '200px';
+                canvas.style.height = '200px';
+                
+                const wrapper = document.createElement('div');
+                wrapper.style.display = 'inline-block';
+                wrapper.style.margin = '20px';
+                wrapper.style.textAlign = 'center';
+                
+                const label = document.createElement('p');
+                label.textContent = `${size}x${size}`;
+                label.style.margin = '10px 0';
+                
+                const downloadBtn = document.createElement('button');
+                downloadBtn.textContent = 'دانلود';
+                downloadBtn.onclick = () => downloadCanvas(canvas, `icon-${size}.png`);
+                
+                wrapper.appendChild(canvas);
+                wrapper.appendChild(label);
+                wrapper.appendChild(downloadBtn);
+                container.appendChild(wrapper);
+            });
+        }
+        
+        function downloadCanvas(canvas, filename) {
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+        
+        function downloadAllIcons() {
+            iconSizes.forEach(size => {
+                const canvas = generateIcon(size);
+                setTimeout(() => {
+                    downloadCanvas(canvas, `icon-${size}.png`);
+                }, size * 10); // Small delay between downloads
+            });
+        }
+        
+        // Auto-generate on load
+        window.onload = generateIcons;
+    </script>
+</body>
+</html>

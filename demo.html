@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دمو اپلیکیشن برنامه‌ریز تناسب اندام</title>
+    <style>
+        body {
+            font-family: 'Vazirmatn', Arial, sans-serif;
+            direction: rtl;
+            text-align: right;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .demo-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .demo-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .demo-header h1 {
+            color: #2196F3;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .demo-header p {
+            color: #666;
+            font-size: 1.2rem;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .feature-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #2196F3;
+        }
+        .feature-card h3 {
+            color: #2196F3;
+            margin-bottom: 10px;
+        }
+        .demo-section {
+            margin: 40px 0;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+        .demo-button {
+            background: #2196F3;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        .demo-button:hover {
+            background: #1976D2;
+            transform: translateY(-2px);
+        }
+        .demo-button.secondary {
+            background: #4CAF50;
+        }
+        .demo-button.secondary:hover {
+            background: #388E3C;
+        }
+        .screenshot {
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            margin: 20px 0;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .tech-badge {
+            background: #e3f2fd;
+            color: #1976D2;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        .instructions {
+            background: #fff3e0;
+            border: 1px solid #ff9800;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .instructions h3 {
+            color: #f57c00;
+            margin-bottom: 15px;
+        }
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        .progress-demo {
+            margin: 20px 0;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #2196F3, #4CAF50);
+            width: 75%;
+            transition: width 0.3s ease;
+        }
+        @media (max-width: 768px) {
+            .demo-container {
+                margin: 10px;
+                padding: 20px;
+            }
+            .demo-header h1 {
+                font-size: 2rem;
+            }
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <!-- Header -->
+        <div class="demo-header">
+            <h1>💪 برنامه‌ریز تناسب اندام</h1>
+            <p>Progressive Web App کامل برای تنظیم برنامه‌های تمرینی</p>
+            <div class="tech-stack">
+                <span class="tech-badge">HTML5</span>
+                <span class="tech-badge">CSS3</span>
+                <span class="tech-badge">JavaScript</span>
+                <span class="tech-badge">PWA</span>
+                <span class="tech-badge">Responsive</span>
+            </div>
+        </div>
+
+        <!-- Features Overview -->
+        <div class="demo-section">
+            <h2>🌟 ویژگی‌های اصلی</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>📱 قابل نصب</h3>
+                    <p>نصب روی صفحه اصلی گوشی مثل اپلیکیشن واقعی</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🎯 برنامه هوشمند</h3>
+                    <p>تولید برنامه متناسب با اهداف و شرایط شما</p>
+                </div>
+                <div class="feature-card">
+                    <h3>📚 کتابخانه کامل</h3>
+                    <p>37 تمرین متنوع با راهنمای تصویری و ویدیویی</p>
+                </div>
+                <div class="feature-card">
+                    <h3>📊 پیگیری پیشرفت</h3>
+                    <p>نمودارهای بصری و آمار کامل پیشرفت</p>
+                </div>
+                <div class="feature-card">
+                    <h3>📄 خروجی PDF</h3>
+                    <p>دانلود برنامه کامل به صورت PDF</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🔄 کار آفلاین</h3>
+                    <p>استفاده بدون اینترنت پس از اولین بار</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Demo Screenshots -->
+        <div class="demo-section">
+            <h2>📸 تصاویر نمونه</h2>
+            <div style="text-align: center;">
+                <div style="background: #e3f2fd; padding: 20px; border-radius: 12px; margin: 20px 0;">
+                    <h4 style="color: #1976D2;">📱 صفحه اصلی (موبایل)</h4>
+                    <p>رابط کاربری فارسی و ریسپانسیو</p>
+                    <div style="background: white; padding: 20px; border-radius: 8px; margin: 10px 0;">
+                        <div style="background: #2196F3; color: white; padding: 15px; border-radius: 8px; margin-bottom: 10px;">
+                            برنامه‌ریز تناسب اندام
+                        </div>
+                        <div style="display: flex; gap: 10px; margin: 10px 0;">
+                            <div style="background: #2196F3; color: white; padding: 10px; border-radius: 6px; flex: 1;">پروفایل</div>
+                            <div style="background: #4CAF50; color: white; padding: 10px; border-radius: 6px; flex: 1;">برنامه</div>
+                        </div>
+                        <div style="display: flex; gap: 10px; margin: 10px 0;">
+                            <div style="background: #FF9800; color: white; padding: 10px; border-radius: 6px; flex: 1;">تمرینات</div>
+                            <div style="background: #9C27B0; color: white; padding: 10px; border-radius: 6px; flex: 1;">پیشرفت</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Demo -->
+        <div class="demo-section">
+            <h2>📈 نمونه نمودار پیشرفت</h2>
+            <div class="progress-demo">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <p style="text-align: center; margin-top: 10px;">پیشرفت کلی: 75%</p>
+                
+                <div style="margin: 20px 0;">
+                    <h4>آمار پیشرفت:</h4>
+                    <ul>
+                        <li>وزن فعلی: 72.5 کیلوگرم</li>
+                        <li>تغییر از هفته اول: -3.2 کیلوگرم</li>
+                        <li>روزهای تمرین: 18 از 21 روز</li>
+                        <li>میانگین وزن: 73.1 کیلوگرم</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Installation Instructions -->
+        <div class="instructions">
+            <h3>🚀 راه‌اندازی سریع</h3>
+            <ol>
+                <li><strong>دانلود فایل‌ها</strong>: تمام فایل‌های پروژه را دانلود کنید</li>
+                <li><strong>تولید آیکون‌ها</strong>: فایل <code>icons-generator.html</code> را باز کنید</li>
+                <li><strong>راه‌اندازی سرور</strong>: یکی از روش‌های زیر را استفاده کنید:</li>
+            </ol>
+            
+            <div class="code-block">
+# Python
+python -m http.server 8000
+
+# Node.js
+npx serve .
+
+# PHP
+php -S localhost:8000
+            </div>
+
+            <p>سپس آدرس <code>http://localhost:8000</code> را در مرورگر باز کنید.</p>
+        </div>
+
+        <!-- Action Buttons -->
+        <div style="text-align: center; margin: 40px 0;">
+            <a href="index.html" class="demo-button">🎯 شروع استفاده از اپلیکیشن</a>
+            <a href="icons-generator.html" class="demo-button secondary">🖼️ تولید آیکون‌ها</a>
+            <a href="README.md" class="demo-button">📖 راهنمای کامل</a>
+        </div>
+
+        <!-- Technical Details -->
+        <div class="demo-section">
+            <h2>⚙️ مشخصات فنی</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                <div>
+                    <h4>Frontend</h4>
+                    <ul>
+                        <li>HTML5 + CSS3</li>
+                        <li>JavaScript ES6+</li>
+                        <li>Responsive Design</li>
+                        <li>RTL Support</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>PWA Features</h4>
+                    <ul>
+                        <li>Service Worker</li>
+                        <li>Web App Manifest</li>
+                        <li>Offline Support</li>
+                        <li>Install Prompt</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Data Management</h4>
+                    <ul>
+                        <li>Local Storage</li>
+                        <li>JSON-based</li>
+                        <li>Auto-save</li>
+                        <li>Export PDF</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Browser Support</h4>
+                    <ul>
+                        <li>Chrome 88+</li>
+                        <li>Firefox 85+</li>
+                        <li>Safari 14+</li>
+                        <li>Edge 88+</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Performance Metrics -->
+        <div class="demo-section">
+            <h2>📊 معیارهای عملکرد</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; text-align: center;">
+                <div>
+                    <div style="font-size: 2rem; color: #2196F3; font-weight: bold;">&lt;50KB</div>
+                    <div style="color: #666;">حجم کل فایل‌ها</div>
+                </div>
+                <div>
+                    <div style="font-size: 2rem; color: #4CAF50; font-weight: bold;">&lt;2s</div>
+                    <div style="color: #666;">زمان بارگذاری</div>
+                </div>
+                <div>
+                    <div style="font-size: 2rem; color: #FF9800; font-weight: bold;">100%</div>
+                    <div style="color: #666;">ریسپانسیو</div>
+                </div>
+                <div>
+                    <div style="font-size: 2rem; color: #9C27B0; font-weight: bold;">37</div>
+                    <div style="color: #666;">تمرین موجود</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div style="text-align: center; margin-top: 50px; padding-top: 30px; border-top: 1px solid #e0e0e0;">
+            <p style="color: #666;">
+                توسعه‌دهنده: <strong>MiniMax Agent</strong> | 
+                نسخه: <strong>1.0.0</strong> | 
+                سال: <strong>2025</strong>
+            </p>
+            <p style="color: #999; font-size: 0.9rem;">
+                یک Progressive Web App کامل برای تناسب اندام
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Simple animation for demo
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate progress bar
+            setTimeout(() => {
+                document.querySelector('.progress-fill').style.width = '75%';
+            }, 500);
+
+            // Add hover effects to feature cards
+            document.querySelectorAll('.feature-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.boxShadow = '0 10px 25px rgba(0,0,0,0.15)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
